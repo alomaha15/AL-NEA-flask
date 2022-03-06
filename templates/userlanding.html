@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>user landing page</title>
+        <link href="static/style.css" rel="stylesheet" type="text/css" />
+        <script src="static/script.js"></script>
+    </head>
+
+
+    <body>
+
+
+        <!-- heading -->
+
+        <div class="headingbar">
+        <head><h1 class="heading"><center>Upgrade Your Mind</center></h1></head>
+        </div>
+
+        <div>
+        <head><h1 class="headingout"><center>Upgrade Your Mind</center></h1></head>
+        </div>
+
+
+        <!-- naigvation menu -->
+
+        <div class="navigationbar">
+            <p class="navigation">
+            Habits
+
+            <button onClick="homepage()" type="mainPage">
+                Sign out
+            </button >
+
+            <p id="greeting">Hi {{firstname}}</p>
+            
+            </p>
+            
+        </div>
+
+
+        <!-- user landing page content -->
+         <!-- put this in a BETTER PLACE-->
+        <div id="habit-control-panel"> 
+            
+                <div class="habit-control-elements">Habit panel</div>
+                <div class="habit-control-elements">
+                    <Button onClick="createhabit()" class="singlebutton" type="button" name="checkoff">
+                        <span> create habit </span>
+                        <span><ion-icon name="add-outline"></ion-icon></span>
+                    </Button>
+                </div>
+        </div>   
+        <!--firstname=firstname, habits=habits, habitstreaklist=habitstreaklist, totalcompletelist=totalcompletelist-->
+         {% for habit in habits %}
+          <div class="individualhabit">
+          <h2> Habit: {{habit[2]}} <!-- Name of Habit--> </h2>
+          <p> Frequency: {{habit[4]}} <!-- Frequency of Habit--> </p>
+          <p> Description: {{habit[3]}} </p>
+          <p> Current Streak: {{habit[5]}} <!-- Streak of Habit--> </p>
+          <p> Total number of completed days/weeks </p>
+          <p> Days/weeks since starting habit </p>
+          <p> Completion rate: </p>
+          
+          <!-- delete habit will have to run some SQL so this will have to be added to the POST method -->
+          <button onClick="deletehabit()" class="singlebutton" type="button" name="deletehabit"> 
+            <span> delete </span>
+            <span><ion-icon name="trash-outline"></ion-icon></span>    
+          </button>
+          <!-- edit habit will have to run some SQL so this will have to be added to the POST method -->
+          <Button onClick="edithabit()" class="singlebutton" type="button" name="edithabit">
+              <span> edit </span>
+              <span><ion-icon name="create-outline"></ion-icon></span>
+          </Button>
+
+          <!-- check off habit will have to run some SQL so this will have to be added to the POST method. It will also have to decide if it's greyed out or not FIND ATTRIBUTE FOR CHECKING WHETHER A BUTTON IS LIVE OR NOT --> 
+          <Button onClick="checkoffhabit()" class="singlebutton" type="button" name="checkoff" disabled={{deactiveButton[counter]}}>
+              <span> check off </span>
+              <span><ion-icon name="checkmark-outline"></ion-icon></span>
+          </Button> 
+
+          <h3>Completion rate:</h3>
+          <div class="progress-bar">
+            <div class="progress-bar-value">{{totalcompletelist[counter]}}%</div>
+            <div class="progress-bar-fill"></div>
+            </div>
+          </div>   
+
+          <div class="edithabit-window window">
+              <div class="edithabit-content">
+                  <div class="closeedit">
+                      +
+                  </div>
+                  edit habit
+                  </div>  
+                      <form method = "get">
+                          <input class="create-habit-elements" type="text" name="username" placeholder="Input the name of the habit">
+
+                          <input class="create-habit-elements" type="text" name="firstname" placeholder="Input a description of the habit">
+
+                          <input class="create-habit-elements" type="text" name="firstname" placeholder="Input the desired frequency">
+
+                          <Button onClick="userlanding" class="create-habit-elements" type="submit" name="submit">Update</Button>
+                      </form>
+                  </div>
+
+              </div>
+          </div>
+      {counter = counter + 1}
+  {% endfor %}
+        
+
+        <div class="createhabit-window window">
+            <div class="createhabit-content">
+                <div class="closecreate">
+                    +
+                </div>
+                create habit
+                </div>  
+                    <form method = "get">
+                        <input class="create-habit-elements" type="text" name="username" placeholder="Input the name of the habit">
+
+                        <input class="create-habit-elements" type="text" name="firstname" placeholder="Input a description of the habit">
+
+                        <input class="create-habit-elements" type="text" name="firstname" placeholder="Input the desired frequency">
+
+                        <Button onClick="userlanding" class="create-habit-elements" type="submit" name="submit">Create</Button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="deletehabit-window window">
+            <div class="deletehabit-content">
+                <div class="closedelete">
+                    +
+                </div>
+                delete habit
+            </div>
+        </div> -->
+
+
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+        
+    </body>
+</html>
