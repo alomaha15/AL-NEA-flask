@@ -1,9 +1,49 @@
-import sqlite3, cgi, os  #importing libraries that may be of use to me. Libraries contain pretested code and modules so using these will save me time whilst programming
+import sqlite3, cgi, os 
+#importing libraries that may be of use to me. Libraries contain pretested code and modules so using these will save me time whilst programming
 
-# form = cgi.FieldStorage()
+#form = cgi.FieldStorage()
 #username = str(form.getvalue("username"))
 #firstname = str(form.getvalue("firstname"))
 #print(username)
+def populate():
+  # writeSQL("INSERT INTO person (username, firstname) VALUES ('guru1', 'Alex') ")
+  writeSQL("INSERT INTO habit VALUES (null,'guru1', 'run', 'run 3km a day', 'daily',0)")
+  writeSQL("INSERT INTO habitStreak (date, completed) VALUES (21, 'F')")
+
+  # writeSQL("INSERT INTO person (username, firstname) VALUES ('guru2', 'Bob') ")
+  writeSQL("INSERT INTO habit VALUES (null, 'guru2', 'read', 'readbook', 'Monthly', 5)")
+  writeSQL("INSERT INTO habitStreak (date, completed) VALUES (29, 'T')")
+  
+  #print(readSQL("SELECT * FROM person"))
+
+  # writeSQL("INSERT INTO habitStreak (habitID, date, completed) VALUES (1, 29, 'T')")
+    
+
+  # writeSQL("INSERT INTO habit VALUES (null, 'guru2', 'read', 'readbook', 'M', 5)")
+  #print(readSQL("SELECT * FROM person"))
+
+  # writeSQL("INSERT INTO habitStreak (habitID, date, completed) VALUES (1, 29, 'T')")
+  #print(readSQL("SELECT * FROM person"))
+    
+def populateHabit():
+  #writeSQL("INSERT INTO person VALUES ('guru1','Bob')")
+  writeSQL("INSERT INTO habit VALUES (null,'guru1', 'run 3km a day', 'daily',0)")
+  #writeSQL("INSERT INTO habitStreak VALUES (13, 0)")
+
+  writeSQL("INSERT INTO person VALUES ('guru2','Adam')")
+  writeSQL("INSERT INTO habit VALUES (null, 'guru2', 'meditate', 'meditate 3 times a week', 'weekly',0)")
+ # writeSQL("INSERT INTO habitStreak VALUES (10, 1)")
+        
+  #add 2 people
+  #give them a habbit
+
+def printSQL():
+  print("habit:")
+  readSQL("SELECT * FROM habit")
+  print("person:")
+  readSQL("SELECT * FROM person")
+  print("habitStreak:")
+  readSQL("SELECT * FROM habitStreak")
 
 def newDatabase():
     with sqlite3.connect("userDatabase.db")as db:
@@ -31,58 +71,6 @@ def newDatabase():
                 completed integer,
                 FOREIGN KEY (habitID) REFERENCES habit(habitID));"""
         cursor.execute(sql)
-
-# def populate():
-#   writeSQL("INSERT INTO person VALUES ('guru1','Adam')")
-  
-#   writeSQL("INSERT INTO habit (username, habitName, description, frequency, streak) VALUES ('guru1', 'workout', 'workout for 20 minutes', 'D', 3)")
-  
-#   writeSQL("INSERT INTO habitStreak (habitID, date, completed) VALUES (0, 21, 'F')")
-
-#   writeSQL("INSERT INTO person VALUES ('guru2','Bob')")
-  
-#   writeSQL("INSERT INTO habit (username, habitName, description, frequency, streak) VALUES ('guru2', 'read', 'readbook', 'M', 5)")
-
-      
-  #print(readSQL("SELECT * FROM person"))
-  #writeSQL("INSERT INTO person (username) VALUES ('alomaha14') ")
-
-def realPopulate(sql):
-  with sqlite3.connect("userDatabase.db")as db:
-    cursor = db.cursor()  
-    writeSQL("INSERT INTO person VALUES ('guru1','Adam')")
-    
-    writeSQL("INSERT INTO habit (username, habitName, description, frequency, streak) VALUES ('guru1', 'workout', 'workout for 20 minutes', 'D', 3)")
-    
-    writeSQL("INSERT INTO habitStreak (habitID, date, completed) VALUES (0, 21, 'F')")
-  
-    writeSQL("INSERT INTO person VALUES ('guru2','Bob')")
-    
-    writeSQL("INSERT INTO habit (username, habitName, description, frequency, streak) VALUES ('guru2', 'read', 'readbook', 'M', 5)")
-    
-    writeSQL("INSERT INTO habitStreak (habitID, date, completed) VALUES (1, 29, 'T')")
-    db.execute(sql)
-  
-    
-    #print(readSQL("SELECT * FROM person"))
-
-
-    
-def populateHabit():
-  #writeSQL("INSERT INTO person VALUES ('guru1','Bob')")
-  writeSQL("INSERT INTO habit VALUES (null,'guru1', 'run', 'run 3km a day', 'daily',0)")
-  #writeSQL("INSERT INTO habitStreak VALUES (13, 0)")
-
-  writeSQL("INSERT INTO person VALUES ('guru2','Adam')")
-  writeSQL("INSERT INTO habit VALUES (null, 'guru2', 'meditate', 'meditate 3 times a week', 'weekly',0)")
- # writeSQL("INSERT INTO habitStreak VALUES (10, 1)")
-        
-  #add 2 people
-  #give them a habbit
-
-
-
-
 #here I have established my database with the three tables that i will use throughout my program HABIT NAME IN PERSON TABLE
 
 def checkDatabase():
@@ -126,11 +114,6 @@ def deleteSQL():
         cursor = db.cursor() 
         db.execute("DELETE FROM person WHERE username = 'guru1' ")
 #I will use this function when I need to delete data from the table(s)
-
-newDatabase()
-# realPopulate()
-# populateHabit()
-# print("readSQL: ", readSQL())
 
 
 

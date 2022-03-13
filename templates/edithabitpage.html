@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>login page</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+     <script src="static/script.js"></script>
+  </head>
+
+    
+  <body>
+
+<!-- heading  -->
+
+    <div class="headingbar">
+    <head><h1 class="heading"><center>Upgrade Your Mind</center></h1></head>
+    </div>
+  
+    <div>
+    <head><h1 class="headingout"><center>Upgrade Your Mind</center></h1></head>
+    </div>
+  
+    <!-- navigation menu  -->
+  
+    <div class="navigationbar">
+      <p class="navigation">
+      edit habit
+
+      <button onClick="userlanding()" type="button">
+          back
+      </button>
+      </p>
+    </div>
+
+
+<!-- eidt habit page content -->        
+
+  <form method = "GET">
+    <input name=firstname value="{{firstname}}" type="hidden">
+    <input name=username value="{{username}}" type="hidden">
+    <input name=habit value="{{habits[counter][2]}}" type="text">
+    <input class="create-habit-elements" type="text" name="habitName" placeholder="Input new habit name">
+
+    <input class="create-habit-elements" type="text" name="description" placeholder="Input new habit description">
+
+    <input class="create-habit-elements" type="text" name="frequency" placeholder="Input new frequency">
+
+    <Button onClick="userlanding" class="create-habit-elements" type="submit" name="submit">Update</Button>
+  </form>
+
+       
+    </body>
+</html>

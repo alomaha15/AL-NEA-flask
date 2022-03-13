@@ -126,11 +126,11 @@ img {
 /* userlanding-page */
 
 #greeting {
-    color: white;
+    color: black;
     z-index: 1000;
-    position: relative;
-    left:100px; 
-/*     top:30px;  */
+    position: absolute;
+    left:155px; 
+    top:6px; 
 }
 
 .individualhabit {
@@ -214,6 +214,7 @@ img {
     z-index: 200;
     margin: 3px;
 }
+
 
 
 /* .deletehabit-window {
